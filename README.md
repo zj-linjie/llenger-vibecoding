@@ -1,6 +1,6 @@
 # llenger-vibecoding
 
-面向 Codex 的轻量开发 Skills：从想法完成功能，从现象追查故障，均以验证和独立 Review 收尾。
+面向 Codex 与 ZCode 的轻量开发 Skills：从想法完成功能，从现象追查故障，均以验证和独立 Review 收尾。
 
 | Skill | 流程 |
 | --- | --- |
@@ -36,6 +36,12 @@ $llenger-debug 搜索结果翻到第二页后切换筛选条件，页面显示�
 ```
 
 安装目录、软链接支持与显式调用策略依据 [OpenAI 官方 Skill 文档](https://learn.chatgpt.com/docs/build-skills)。
+
+## 在 ZCode 中使用
+
+两个 Skill 是宿主中立的纯指令实现。ZCode 同样从 `~/.agents/skills` 发现它们，并按 `/llenger-feature`、`/llenger-debug` 显式调用；各 Skill 包内的 `agents/openai.yaml` 仅作用于 Codex 的隐式触发开关，ZCode 忽略该文件，无需任何改动。
+
+独立 Review 在 ZCode 侧复用用户级角色 `~/.zcode/agents/Reviewer.md`，职责与 Codex 的 `~/.codex/agents/Reviewer.toml` 对齐：独立审查、不预设根因、报告问题位置/证据/严重程度或明确无实质发现、不改被审代码、不派生子代理。Skill 中的 `fork_turns="none"` 对应 ZCode 子代理每次调用的全新上下文。仓库仍不随附任何角色定义；缺少该角色时按降级策略执行，明确报告“独立 Review 未完成”。
 
 ## 任务书与验收
 
