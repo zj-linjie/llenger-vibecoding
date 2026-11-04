@@ -1,0 +1,38 @@
+# llenger-vibecoding 任务书
+
+2026-11-04，依据用户确认的范围实现。
+
+## 目标与范围
+
+提供两个自包含的轻量 Codex Skill：
+
+- `$llenger-feature`：想法 → 需求讨论 → 任务书 → 开发 → 验证 → 独立 Review → 交付。
+- `$llenger-debug`：截图、报错或现象 → 调查与根因证据 → 修复 → 回归验证 → 独立 Review → 交付。
+
+需求明确时直接推进；模糊时先结合项目上下文调查，再讨论影响实现的关键问题。Feature 任务书包含目标、范围、实现思路、验收条件和待定事项；Debug 诊断记录包含现象、复现方式、根因证据、修复方案和验证方法。
+
+## 已确认的共同约束
+
+- 仅显式调用，通过各自 `agents/openai.yaml` 中的 `policy.allow_implicit_invocation: false` 关闭隐式触发。
+- 主 Agent 负责实现、验证、修正审查发现的问题与最终验收；现有 Reviewer 以新鲜上下文独立审查稳定后的变更。
+- 不增加其他强制子 Agent，不启动完整 Team Mode，不新增 Python 脚本、调度器或角色 TOML；保留现有 Team Mode。
+- Reviewer 只审查相关变更，涵盖相关未跟踪文件；存在阻塞问题时由主 Agent 修正，并按需复审。
+- 无法复现、未执行测试、Reviewer 不可用以及剩余风险均如实报告，不编造成功。
+- 默认交付止于本地修改、必要验证和独立审查。分支、commit、push、PR 和其他外部写入按当次指令执行。
+- 项目不捆绑模型、角色配置或运行时依赖；安装时复用目标环境已有的 Reviewer。
+
+## 验收
+
+1. 两个目录均符合 Skill 标准，名称与目录一致；显式调用策略正确。
+2. 使用一次真实小型 Feature：从需求收敛到实现、验证、独立 Review 和交付，且不擅自执行 Git 交付操作。
+3. 使用一次真实截图或故障描述：能自主定位，给出可核查的根因证据，修复并验证，完成独立 Review。
+4. Reviewer 不可用或证据不足时明确报告受阻环节，不冒充完成。
+
+结构校验、隔离样例验证与真实项目验收分别记录；前两者不能替代真实使用验收。
+
+## 来源
+
+- [ZJ-24 · Feature Skill](https://linear.app/zjlinjie/issue/ZJ-24)
+- [ZJ-25 · Debug Skill](https://linear.app/zjlinjie/issue/ZJ-25)
+
+原任务单中的 `$feature`、`$debug` 已按本次讨论更名；本文件记录确认后的实现范围，不改动 Linear 原任务单。
