@@ -1,0 +1,23 @@
+Generation: built-in ImageGen, 2026-11-09.
+Published asset: ../hero.webp (WebP packaging at quality 86; artwork unchanged).
+Role: conceptual editorial illustration, not a product screenshot or verification artifact.
+
+Art direction
+Audience: individual developers using Codex or ZCode.
+Value: understand projects, build scoped features, and fix root causes.
+Proof in README: real invocation examples and linked validation records.
+First action: choose one of three explicit skill invocations after installation.
+Palette: warm ivory #f3f0e8 / ink #192521 / green #366b50 / blue #527f94 / orange #bf704a.
+Type: large sans-serif title, monospace command accents.
+Shape: aligned paper specimens, generous margins, restrained texture.
+Motif: system map, code diff, and diagnostic trace for three independent skills.
+Composition: calm editorial poster; native Markdown for commands and details.
+
+Final generation prompt
+
+Use case: illustration-story / editorial developer-tool branding.
+Asset type: a finished, very wide GitHub README hero banner for the real project llenger-vibecoding, ideally 1792 x 768 or a similar wide 2.3:1 aspect ratio.
+Primary request: design a sophisticated editorial illustration and typographic poster for a lightweight set of three coding-agent skills, HOW, FEATURE, DEBUG, used with Codex and ZCode. The project understands existing systems, builds scoped features, and fixes root causes; development finishes with evidence and an independent review. Make it specific to these three skills.
+Art direction: quiet engineering field notebook meets contemporary Swiss editorial print. Warm ivory paper #f3f0e8, ink charcoal #192521, forest green #366b50, faded blue #527f94, muted burnt orange #bf704a. Crisp large type, restrained tactile paper grain, subtle real paper relief, airy spacing, precise alignments. Flat frontal composition with a little physical depth in three paper specimens, no glossy 3D.
+Composition: top half dominated by oversized beautiful dark sans-serif title, on two deliberate lines reading exactly "llenger" and "vibecoding". A small uppercase eyebrow reading exactly "LIGHTWEIGHT CODING SKILLS". In the lower half, a horizontal sequence of THREE generously spaced paper specimens on the same baseline, strongly differentiated: green HOW with a three-node connected module map; blue FEATURE with a compact code diff (a few legible + and - marks and lines, not fake paragraphs); burnt-orange DEBUG with a tangled trace resolving into a single clean line and one small evidence check. Each specimen has a large exact readable label, respectively "HOW", "FEATURE", "DEBUG". Connect the three visually only with fine editorial alignment, not arrows: these are independent entry points, not mandatory sequential stages. Include tiny literal command labels "$llenger-how", "$llenger-feature", "$llenger-debug" only if they can be rendered accurately; prioritize the three large labels. Keep all details within comfortable margins.
+Only text allowed: "LIGHTWEIGHT CODING SKILLS", "llenger", "vibecoding", "HOW", "FEATURE", "DEBUG", "$llenger-how", "$llenger-feature", "$llenger-debug". Exact spelling. No extra slogans, numbers, fake benchmarks, screenshots, status badges, logos or watermarks. No robots, glowing brains, gradients, neon, decorative circuitry, dashboards, ornamental borders. This is a conceptual illustration, not a fabricated product UI. All essential use instructions will be separate Markdown. Fully opaque background, polished and calm, excellent at 900px GitHub width.
