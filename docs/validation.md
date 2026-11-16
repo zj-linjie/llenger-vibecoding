@@ -64,3 +64,18 @@
 样例保留了原有暂存测试；其中 SAVE10 仍只有金额 100 的用例，未将额外探针补为持久回归测试。样例结果不表示现有测试套件能防止该问题再次发生。
 
 尚未覆盖新入口在真实项目中的首次端到端使用、Reviewer 不可用的独立宿主、Explorer/ExpertAdvisor/Executor 的条件分支，以及 Codex/ZCode 本机发现与界面调用。本轮未安装新的全局链接，未发布 PR 审查评论或修改 Linear。未将临时样例、探针或依赖加入仓库，已有 `.v2c/`、`.video_agent/` 保留。
+
+## 2026-11-16 · Merge 入口
+
+根据 P-ZJ-5 的上游合并提案新增 `llenger-merge/SKILL.md`（39 行）及显式调用配置，同步中英文 README 和任务书。主流程为 Preflight / Merge / Verify / Attribute / Ship；不引入脚本、运行时依赖或强制子 Agent。
+
+| 检查 | 结果与范围 |
+| --- | --- |
+| 结构与调用策略 | 使用本机已有 PyYAML 缓存调用官方 `quick_validate.py` 的校验函数，五个 Skill 均通过；名称与目录一致，五份显式调用开关均为布尔值 `false` |
+| 文档检查 | 中英文 README、任务书及本记录的本地 Markdown 链接均可解析；README 安装示例通过 `sh -n` |
+| 格式检查 | `git diff --check` 通过 |
+| 规则静态核对 | 保留上游风险、证实的浏览器回归与版本撞号三个决策点；基线同样失败不直接判定 flaky，浏览器选测覆盖业务变更影响，项目数据从目标项目文档读取 |
+
+上述为结构与静态检查，未进行独立审查、隔离行为评估或真实项目合并验收，也未验证本机发现与界面调用。未安装全局链接、构建装机、提交推送或修改 Linear；已有 `.v2c/`、`.video_agent/` 保留。
+
+随后按用户要求完成全局安装：`~/.agents/skills/llenger-merge` 与 `~/.zcode/skills/llenger-merge` 均链接到本仓库，链接内容可读且与源文件一致。Codex app-server `skills/list` 强制重载后返回 `scope: user`、`enabled: true`；已核对本机 ZCode 程序的用户级 skill 扫描目录包含上述路径，未进行 ZCode 界面调用验证。后续提交、推送及 Linear 完成标记按用户另行授权执行。
