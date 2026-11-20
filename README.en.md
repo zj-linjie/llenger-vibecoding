@@ -8,11 +8,19 @@
 
 **Understand the project. Build the feature. Fix the root cause.**
 
-Five lightweight coding skills for **Codex / ZCode**. Invoke the one you need; the main agent drives the work. Development and fixes finish with actual verification and an independent review.
+Six lightweight coding skills for **Codex / ZCode**. Invoke the one you need; the main agent drives the work. Development and fixes finish with actual verification and an independent review.
 
 [Choose an entry point](#choose-an-entry-point) · [Install](#install) · [Hosts and review](#hosts-and-review) · [Design and validation](#design-and-validation)
 
 ## Choose an entry point
+
+### 📋 Agents · Write project instructions
+
+Create a concise `AGENTS.md` for a new or existing project, or update or inspect a file already in place. Ground the instructions in the project's actual commands and conventions.
+
+```text
+$llenger-agents Create a concise AGENTS.md for this project.
+```
 
 ### 🧭 How · Understand before deciding what to change
 
@@ -59,7 +67,7 @@ $llenger-merge Merge the target upstream version into this fork.
 Check for reverts and deadlocks first, then merge and verify locally.
 ```
 
-The five entry points are independent. How is optional before development; an existing handoff workflow continues to carry work-in-progress context.
+The six entry points are independent. How is optional before development; an existing handoff workflow continues to carry work-in-progress context.
 
 ## Install
 
@@ -70,6 +78,7 @@ git clone https://github.com/zj-linjie/llenger-vibecoding.git
 cd llenger-vibecoding
 
 mkdir -p "$HOME/.agents/skills"
+ln -s "$PWD/skills/llenger-agents" "$HOME/.agents/skills/llenger-agents"
 ln -s "$PWD/skills/llenger-how" "$HOME/.agents/skills/llenger-how"
 ln -s "$PWD/skills/llenger-feature" "$HOME/.agents/skills/llenger-feature"
 ln -s "$PWD/skills/llenger-debug" "$HOME/.agents/skills/llenger-debug"
@@ -85,6 +94,7 @@ Use the examples above inside your target project. In ZCode, replace the `$` pre
 
 | Entry point | Path | Default delivery |
 | --- | --- | --- |
+| [Agents](skills/llenger-agents/SKILL.md) | Check project sources → distill conventions → check the result | Project `AGENTS.md` or read-only recommendations |
 | [How](skills/llenger-how/SKILL.md) | Question → runtime and deployment map → change suggestions | Read-only findings |
 | [Feature](skills/llenger-feature/SKILL.md) | Brief → implementation → verification → independent review | Local feature changes |
 | [Debug](skills/llenger-debug/SKILL.md) | Symptom → root-cause evidence → fix → regression checks → independent review | Local bug fix |
@@ -93,13 +103,13 @@ Use the examples above inside your target project. In ZCode, replace the `$` pre
 
 - **Settle the scope.** Investigate what the repository can answer, then discuss choices that affect product direction or acceptance.
 - **Make evidence checkable.** Separate source facts, runtime observations, and inference. Test behavior; verify the running version and important side effects.
-- **Keep the workflow small.** All five skills are plain instructions with no runtime dependencies. Reuse an existing Reviewer; no scheduler, model configuration, or role definitions are bundled.
+- **Keep the workflow small.** All six skills are plain instructions with no runtime dependencies. Reuse an existing Reviewer; no scheduler, model configuration, or role definitions are bundled.
 
 Branching, commits, pushes, PRs, and deployments follow the authorization given in the conversation. Missing verification or independent review is reported explicitly.
 
 ## Hosts and review
 
-**How / Merge** run in the main agent without subagents. **Feature / Debug / Review** need a host with subagent support and an existing `Reviewer` role:
+**Agents / How / Merge** run in the main agent without subagents. **Feature / Debug / Review** need a host with subagent support and an existing `Reviewer` role:
 
 - **Codex:** for example, `~/.codex/agents/Reviewer.toml`, invoked with fresh context.
 - **ZCode:** reuse `~/.zcode/agents/Reviewer.md`, with a new context on each invocation.
@@ -109,7 +119,7 @@ The Reviewer reviews only: it does not edit the code or spawn subagents. The mai
 <details>
 <summary>Invocation policy and host details</summary>
 
-All five skills require explicit invocation. Each `agents/openai.yaml` sets `policy.allow_implicit_invocation: false` for Codex. ZCode ignores this file and uses slash commands.
+All six skills require explicit invocation. Each `agents/openai.yaml` sets `policy.allow_implicit_invocation: false` for Codex. ZCode ignores this file and uses slash commands.
 
 This repository does not supply a Reviewer role file or change existing role or model settings. See the [Codex skills documentation](https://learn.chatgpt.com/docs/build-skills) for installation and discovery.
 
@@ -117,6 +127,6 @@ This repository does not supply a Reviewer role file or change existing role or 
 
 ## Design and validation
 
-Feature and Debug have positive real-project usage feedback. Validation coverage and remaining real-project checks for How, Review, and Merge are recorded in the [validation notes](docs/validation.md); the agreed requirements are in the [task specification](docs/task-spec.md). Both documents are in Chinese.
+Feature and Debug have positive real-project usage feedback. Validation coverage and remaining real-project checks for Agents, How, Review, and Merge are recorded in the [validation notes](docs/validation.md); the agreed requirements are in the [task specification](docs/task-spec.md). Both documents are in Chinese.
 
 Selected ideas from [pstack](https://github.com/cursor/plugins/tree/main/pstack)—project understanding, ownership boundaries, root-cause reasoning, and behavioral verification—are rewritten for a personal development workflow. Future changes will follow problems observed in use.
