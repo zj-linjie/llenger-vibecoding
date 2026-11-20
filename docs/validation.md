@@ -79,3 +79,7 @@
 上述为结构与静态检查，未进行独立审查、隔离行为评估或真实项目合并验收，也未验证本机发现与界面调用。未安装全局链接、构建装机、提交推送或修改 Linear；已有 `.v2c/`、`.video_agent/` 保留。
 
 随后按用户要求完成全局安装：`~/.agents/skills/llenger-merge` 与 `~/.zcode/skills/llenger-merge` 均链接到本仓库，链接内容可读且与源文件一致。Codex app-server `skills/list` 强制重载后返回 `scope: user`、`enabled: true`；已核对本机 ZCode 程序的用户级 skill 扫描目录包含上述路径，未进行 ZCode 界面调用验证。后续提交、推送及 Linear 完成标记按用户另行授权执行。
+
+## 2026-11-20 · Agents 入口
+
+新增精简项目级 `AGENTS.md` 的显式调用入口，覆盖新建、更新和只读检查。六个 Skill 均通过官方结构校验，显式调用配置、文档相对链接及双语安装示例通过检查。新入口的实际项目输出和 Codex / ZCode 运行时调用待验证。
