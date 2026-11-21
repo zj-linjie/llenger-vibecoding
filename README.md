@@ -8,7 +8,7 @@
 
 **看懂项目，做出功能，修到根因。**
 
-面向 **Codex / ZCode** 的六个轻量开发 Skill。按需显式调用，由主 Agent 推进；开发与修复以实际验证和独立 Review 收尾。
+面向 **Codex / ZCode** 的七个轻量开发 Skill。按需显式调用，由主 Agent 推进；开发与修复以实际验证和独立 Review 收尾。
 
 [选一个入口](#选一个入口) · [安装](#安装) · [宿主与审查](#宿主与审查) · [设计与验证](#设计与验证)
 
@@ -65,7 +65,15 @@ $llenger-merge 把 upstream 的目标版本合入当前 fork，先检查回滚�
 完成本地合并与验证。
 ```
 
-六个入口各自独立。How 不作为开发的前置步骤；已有 handoff 继续承接工作进度。
+### 🧹 Clean · 确认范围后清理构建缓存
+
+只读检查磁盘与项目构建产物，列出具体路径、占用和影响；用户确认要清理的对象后才执行。
+
+```text
+$llenger-clean 检查开发项目有哪些构建缓存可以清理。
+```
+
+七个入口各自独立。How 不作为开发的前置步骤；已有 handoff 继续承接工作进度。
 
 ## 安装
 
@@ -82,6 +90,7 @@ ln -s "$PWD/skills/llenger-feature" "$HOME/.agents/skills/llenger-feature"
 ln -s "$PWD/skills/llenger-debug" "$HOME/.agents/skills/llenger-debug"
 ln -s "$PWD/skills/llenger-review" "$HOME/.agents/skills/llenger-review"
 ln -s "$PWD/skills/llenger-merge" "$HOME/.agents/skills/llenger-merge"
+ln -s "$PWD/skills/llenger-clean" "$HOME/.agents/skills/llenger-clean"
 ```
 
 已安装的 Skill 跳过对应链接命令；`ln -s` 不覆盖同名目标。链接指向本仓库，移动仓库后需更新链接。若未出现，重启宿主后重试。
@@ -98,16 +107,17 @@ ln -s "$PWD/skills/llenger-merge" "$HOME/.agents/skills/llenger-merge"
 | [Debug](skills/llenger-debug/SKILL.md) | 现象 → 根因证据 → 修复 → 回归 → 独立 Review | 本地故障修复 |
 | [Review](skills/llenger-review/SKILL.md) | 明确范围 → 独立审查 → 核实证据；按需修复并复审 | 审查发现 |
 | [Merge](skills/llenger-merge/SKILL.md) | 上游预检 → 合并 → 定向验证 → 基线归因 → 按授权交付 | 本地合并及验证结果 |
+| [Clean](skills/llenger-clean/SKILL.md) | 只读盘点 → 列出具体对象 → 用户确认 → 清理核验 | 清理结果和空间变化 |
 
 - **范围先清楚。** 查得到的问题先查，影响产品方向和验收的选择再集中讨论。
 - **证据能核查。** 区分源码事实、运行观察与推断；测试关注行为，验证确认运行版本和关键副作用。
-- **流程保持轻量。** 六个 Skill 都是纯指令，无运行时依赖；复用已有 Reviewer，不附带调度器、模型配置或角色定义。
+- **流程保持轻量。** 七个 Skill 都是纯指令，无运行时依赖；复用已有 Reviewer，不附带调度器、模型配置或角色定义。
 
 创建分支、commit、push、PR、部署等操作按会话授权执行。缺少验证或独立审查时，会明确报告尚未完成的部分。
 
 ## 宿主与审查
 
-**Agents / How / Merge** 由主 Agent 完成，不需要子 Agent。**Feature / Debug / Review** 需要宿主提供子 Agent 调用能力及已配置的 `Reviewer`：
+**Agents / How / Merge / Clean** 由主 Agent 完成，不需要子 Agent。**Feature / Debug / Review** 需要宿主提供子 Agent 调用能力及已配置的 `Reviewer`：
 
 - **Codex：** 例如 `~/.codex/agents/Reviewer.toml`，以新鲜上下文独立审查。
 - **ZCode：** 复用 `~/.zcode/agents/Reviewer.md`，每次调用使用全新上下文。

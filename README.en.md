@@ -8,7 +8,7 @@
 
 **Understand the project. Build the feature. Fix the root cause.**
 
-Six lightweight coding skills for **Codex / ZCode**. Invoke the one you need; the main agent drives the work. Development and fixes finish with actual verification and an independent review.
+Seven lightweight coding skills for **Codex / ZCode**. Invoke the one you need; the main agent drives the work. Development and fixes finish with actual verification and an independent review.
 
 [Choose an entry point](#choose-an-entry-point) · [Install](#install) · [Hosts and review](#hosts-and-review) · [Design and validation](#design-and-validation)
 
@@ -67,7 +67,15 @@ $llenger-merge Merge the target upstream version into this fork.
 Check for reverts and deadlocks first, then merge and verify locally.
 ```
 
-The six entry points are independent. How is optional before development; an existing handoff workflow continues to carry work-in-progress context.
+### 🧹 Clean · Confirm before clearing build caches
+
+Inspect disk usage and build artifacts, list exact paths and consequences, and clean only the items the user confirms.
+
+```text
+$llenger-clean Find build caches I can clean in my development projects.
+```
+
+The seven entry points are independent. How is optional before development; an existing handoff workflow continues to carry work-in-progress context.
 
 ## Install
 
@@ -84,6 +92,7 @@ ln -s "$PWD/skills/llenger-feature" "$HOME/.agents/skills/llenger-feature"
 ln -s "$PWD/skills/llenger-debug" "$HOME/.agents/skills/llenger-debug"
 ln -s "$PWD/skills/llenger-review" "$HOME/.agents/skills/llenger-review"
 ln -s "$PWD/skills/llenger-merge" "$HOME/.agents/skills/llenger-merge"
+ln -s "$PWD/skills/llenger-clean" "$HOME/.agents/skills/llenger-clean"
 ```
 
 Skip links for skills already installed; `ln -s` will not overwrite existing targets. The links point to this checkout, so update them if you move it. Restart the host if the skills do not appear.
@@ -100,16 +109,17 @@ Use the examples above inside your target project. In ZCode, replace the `$` pre
 | [Debug](skills/llenger-debug/SKILL.md) | Symptom → root-cause evidence → fix → regression checks → independent review | Local bug fix |
 | [Review](skills/llenger-review/SKILL.md) | Scope → independent review → evidence checks; fixes and re-review on request | Review findings |
 | [Merge](skills/llenger-merge/SKILL.md) | Upstream preflight → merge → targeted checks → baseline comparison → authorized delivery | Local merge and verification results |
+| [Clean](skills/llenger-clean/SKILL.md) | Read-only inventory → exact items → user confirmation → cleanup and verification | Cleanup results and space recovered |
 
 - **Settle the scope.** Investigate what the repository can answer, then discuss choices that affect product direction or acceptance.
 - **Make evidence checkable.** Separate source facts, runtime observations, and inference. Test behavior; verify the running version and important side effects.
-- **Keep the workflow small.** All six skills are plain instructions with no runtime dependencies. Reuse an existing Reviewer; no scheduler, model configuration, or role definitions are bundled.
+- **Keep the workflow small.** All seven skills are plain instructions with no runtime dependencies. Reuse an existing Reviewer; no scheduler, model configuration, or role definitions are bundled.
 
 Branching, commits, pushes, PRs, and deployments follow the authorization given in the conversation. Missing verification or independent review is reported explicitly.
 
 ## Hosts and review
 
-**Agents / How / Merge** run in the main agent without subagents. **Feature / Debug / Review** need a host with subagent support and an existing `Reviewer` role:
+**Agents / How / Merge / Clean** run in the main agent without subagents. **Feature / Debug / Review** need a host with subagent support and an existing `Reviewer` role:
 
 - **Codex:** for example, `~/.codex/agents/Reviewer.toml`, invoked with fresh context.
 - **ZCode:** reuse `~/.zcode/agents/Reviewer.md`, with a new context on each invocation.
